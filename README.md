@@ -1,2 +1,2 @@
-# productregistration-api
-Uma API Restful para estudo e aprendizagem. Dentre os principais aspectos do desenvolvimento estão o uso das boas práticas no desenvolvimento de API's com Spring Boot, Autenticação com JWT e Spring Security, Dockers, CI na AWS.
+# product-registration-api
+A Restful API for study and learning. Among the main aspects of development are the use of best practices in API development with Spring Boot, Authentication with JWT and Spring Security, Dockers, CI on AWS.
