@@ -1,70 +1,73 @@
-package br.com.fabtec.modal;
+package br.com.fabtec.vo.v1;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.LastModifiedDate;
-
 import br.com.fabtec.enums.ProductCategory;
 import br.com.fabtec.enums.ProductType;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
-@Table(name = "products")
-public class Products implements Serializable {
+public class ProductsVo implements Serializable {
 
-	private static final long serialVersionUID = -8499493484763414150L;
-	
-	@Id
-	@SequenceGenerator(name = "products_seq", sequenceName = "products_seq", allocationSize = 1)
-	@GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "products_seq")
+	private static final long serialVersionUID = -897842491746305414L;
+
 	private Long id;
 	
-	@Column(name = "product_name", nullable = false, length = 80)
+	@Size(min = 0, max = 80,
+			message = "Name out of size limit")
+	@NotBlank(message = "The field must be filled")
 	private String productName;
 	
-	@Column(nullable = false, length = 15)
+	@Size(min = 0, max = 15,
+			message = "Number out of size limit")
+	@Positive(message = "Number not be negative")
+	@NotBlank(message = "The field must be filled")
 	private Integer category;
 	
-	@Column(nullable = false, length = 20)
+	@Size(min = 0, max = 20,
+			message = "Name out of size limit")
+	@PositiveOrZero(message = "Number not be negative or zero")
+	@NotBlank(message = "The field must be filled")
 	private String brand;
 	
-	@Column(nullable = false, length = 17)
+	@Size(min = 0, max = 17,
+			message = "Number out of size limit")
+	@Positive(message = "Number not be negative")
+	@NotBlank(message = "The field must be filled")
 	private Integer type;
 	
-	@Column(nullable = false, length = 6)
+	@Size(min = 0, max = 6,
+			message = "Number out of size limit")
+	@PositiveOrZero(message = "Number not be negative or zero")
+	@NotBlank(message = "The field must be filled")
 	private double cost;
 	
-	//estoque
-	@Column(nullable = false, length = 6)
+	@Size(min = 0, max = 6,
+			message = "Number out of size limit")
+	@NotBlank(message = "The field must be filled")
 	private double inventory;
 	
-	//PEGAR DEPOIS DA TABELA USUARIO
-	@Column(name = "registration_responsible", nullable = false, length = 80)
+	@Size(min = 0, max = 80,
+			message = "Name out of size limit")
+	@NotBlank(message = "The field must be filled")
 	private String registrationResponsible;
 	
-	//PEGAR DEPOIS DA TABELA USUARIO
-	@Column(name = "update_responsible", nullable = false, length = 80)
+	@Size(min = 0, max = 80,
+			message = "Name out of size limit")
+	@NotBlank(message = "The field must be filled")
 	private String updateResponsible;
 	
-	@Column(name = "registration_date", nullable = false, updatable = false)
-	@CreationTimestamp
 	private ZonedDateTime registrationDate;
 	
-	@Column(name = "update_date", nullable = false)
-	@LastModifiedDate
 	private ZonedDateTime updateDate;
-
-	public Products() {
+	
+	public ProductsVo() {
 	}
-
-	public Products(Long id, String productName, ProductCategory category, String brand, ProductType type, double cost,
+	public ProductsVo(Long id, String productName, ProductCategory category, String brand, ProductType type, double cost,
 			double inventory, String registrationResponsible, String updateResponsible, ZonedDateTime registrationDate,
 			ZonedDateTime updateDate) {
 		this.id = id;
@@ -79,8 +82,6 @@ public class Products implements Serializable {
 		this.registrationDate = registrationDate;
 		this.updateDate = updateDate;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -162,7 +163,7 @@ public class Products implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Products other = (Products) obj;
+		ProductsVo other = (ProductsVo) obj;
 		return Objects.equals(brand, other.brand) && Objects.equals(category, other.category)
 				&& Objects.equals(id, other.id)
 				&& Double.doubleToLongBits(inventory) == Double.doubleToLongBits(other.inventory)
@@ -174,11 +175,12 @@ public class Products implements Serializable {
 				&& Double.doubleToLongBits(cost) == Double.doubleToLongBits(other.cost);
 	}
 
-	public static ProductsBuilder builder() {
-		return new ProductsBuilder();
+	
+	public static ProductsVoBuilder builder() {
+		return new ProductsVoBuilder();
 	}
 	
-	public static class ProductsBuilder {
+	public static class ProductsVoBuilder {
 		
 		private Long id;
 		private String productName;
@@ -192,66 +194,66 @@ public class Products implements Serializable {
 		private ZonedDateTime registrationDate;
 		private ZonedDateTime updateDate;
 		
-		public ProductsBuilder() {
+		public ProductsVoBuilder() {
 		}
 		
-		public ProductsBuilder id(Long id) {
+		public ProductsVoBuilder id(Long id) {
 			this.id = id;
 			return this;
 		}
 		
-		public ProductsBuilder productName(String productName) {
+		public ProductsVoBuilder productName(String productName) {
 			this.productName = productName;
 			return this;
 		}
 		
-		public ProductsBuilder category(ProductCategory category) {
+		public ProductsVoBuilder category(ProductCategory category) {
 			this.category = category;
 			return this;
 		}
 		
-		public ProductsBuilder brand(String brand) {
+		public ProductsVoBuilder brand(String brand) {
 			this.brand = brand;
 			return this;
 		}
 		
-		public ProductsBuilder type(ProductType type) {
+		public ProductsVoBuilder type(ProductType type) {
 			this.type = type;
 			return this;
 		}
 		
-		public ProductsBuilder cost(double cost) {
+		public ProductsVoBuilder cost(double cost) {
 			this.cost = cost;
 			return this;
 		}
 		
-		public ProductsBuilder inventory(double inventory) {
+		public ProductsVoBuilder inventory(double inventory) {
 			this.inventory = inventory;
 			return this;
 		}
 		
-		public ProductsBuilder registrationResponsible(String registrationResponsible) {
+		public ProductsVoBuilder registrationResponsible(String registrationResponsible) {
 			this.registrationResponsible = registrationResponsible;
 			return this;
 		}
 		
-		public ProductsBuilder updateResponsible(String updateResponsible) {
+		public ProductsVoBuilder updateResponsible(String updateResponsible) {
 			this.updateResponsible = updateResponsible;
 			return this;
 		}
 		
-		public ProductsBuilder registrationDate(ZonedDateTime registrationDate) {
+		public ProductsVoBuilder registrationDate(ZonedDateTime registrationDate) {
 			this.registrationDate = registrationDate;
 			return this;
 		}
 		
-		public ProductsBuilder updateDate(ZonedDateTime updateDate) {
+		public ProductsVoBuilder updateDate(ZonedDateTime updateDate) {
 			this.updateDate = updateDate;
 			return this;
 		}
 		
-		public Products build() {
-			return new Products(id, 
+		public ProductsVo build() {
+			return new ProductsVo(id, 
 								productName, 
 								category, 
 								brand, 
@@ -266,5 +268,6 @@ public class Products implements Serializable {
 		
 		
 	}
+
 	
 }
