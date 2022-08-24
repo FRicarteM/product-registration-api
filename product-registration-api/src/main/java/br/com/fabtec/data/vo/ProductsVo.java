@@ -1,4 +1,4 @@
-package br.com.fabtec.vo.v1;
+package br.com.fabtec.data.vo;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -7,6 +7,7 @@ import java.util.Objects;
 import br.com.fabtec.enums.ProductCategory;
 import br.com.fabtec.enums.ProductType;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
@@ -24,30 +25,32 @@ public class ProductsVo implements Serializable {
 	
 	@Size(min = 0, max = 15,
 			message = "Number out of size limit")
-	@Positive(message = "Number not be negative")
+	@Positive(message = "Number not be negative or zero")
 	@NotBlank(message = "The field must be filled")
 	private Integer category;
 	
 	@Size(min = 0, max = 20,
 			message = "Name out of size limit")
-	@PositiveOrZero(message = "Number not be negative or zero")
 	@NotBlank(message = "The field must be filled")
 	private String brand;
 	
 	@Size(min = 0, max = 17,
 			message = "Number out of size limit")
-	@Positive(message = "Number not be negative")
+	@Positive(message = "Number not be negative or zero")
 	@NotBlank(message = "The field must be filled")
 	private Integer type;
 	
+	@Pattern(regexp = "\\d[\\d\\,\\.]+", 
+			message = "The format is invalid")
 	@Size(min = 0, max = 6,
 			message = "Number out of size limit")
-	@PositiveOrZero(message = "Number not be negative or zero")
+	@PositiveOrZero(message = "Number not be negative")
 	@NotBlank(message = "The field must be filled")
 	private double cost;
 	
 	@Size(min = 0, max = 6,
 			message = "Number out of size limit")
+	@PositiveOrZero(message = "Number not be negative")
 	@NotBlank(message = "The field must be filled")
 	private double inventory;
 	
@@ -159,18 +162,18 @@ public class ProductsVo implements Serializable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if(!(obj instanceof ProductsVo))
 			return false;
 		ProductsVo other = (ProductsVo) obj;
-		return Objects.equals(brand, other.brand) && Objects.equals(category, other.category)
+		return Objects.equals(brand, other.brand) 
+				&& Objects.equals(category, other.category)
 				&& Objects.equals(id, other.id)
 				&& Double.doubleToLongBits(inventory) == Double.doubleToLongBits(other.inventory)
 				&& Objects.equals(productName, other.productName)
 				&& Objects.equals(registrationDate, other.registrationDate)
 				&& Objects.equals(registrationResponsible, other.registrationResponsible)
-				&& Objects.equals(type, other.type) && Objects.equals(updateDate, other.updateDate)
+				&& Objects.equals(type, other.type) 
+				&& Objects.equals(updateDate, other.updateDate)
 				&& Objects.equals(updateResponsible, other.updateResponsible)
 				&& Double.doubleToLongBits(cost) == Double.doubleToLongBits(other.cost);
 	}

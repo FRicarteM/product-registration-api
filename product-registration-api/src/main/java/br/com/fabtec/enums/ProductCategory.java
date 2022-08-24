@@ -21,7 +21,7 @@ public enum ProductCategory {
 		return categoryCode;
 	}
 	
-	public static ProductCategory valueOf(int categoryCode){
+	public static ProductCategory valueOf(int categoryCode) {
 			for(ProductCategory value : ProductCategory.values()) {
 				if(categoryCode == value.getCategoryCode()) {
 					return value;

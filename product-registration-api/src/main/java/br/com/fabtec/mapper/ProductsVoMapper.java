@@ -1,7 +1,7 @@
 package br.com.fabtec.mapper;
 
+import br.com.fabtec.data.vo.ProductsVo;
 import br.com.fabtec.modal.Products;
-import br.com.fabtec.vo.v1.ProductsVo;
 
 public final class ProductsVoMapper {
 

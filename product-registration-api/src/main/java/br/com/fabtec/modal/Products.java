@@ -146,32 +146,29 @@ public class Products implements Serializable {
 		this.updateDate = updateDate;
 	}
 
-	
-	
 	@Override
 	public int hashCode() {
-		return Objects.hash(brand, category, id, inventory, productName, registrationDate, registrationResponsible,
-				type, updateDate, updateResponsible, cost);
+		return Objects.hash(brand, category, cost, id, inventory, productName, registrationDate,
+				registrationResponsible, type, updateDate, updateResponsible);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if(!(obj instanceof Products))
 			return false;
 		Products other = (Products) obj;
-		return Objects.equals(brand, other.brand) && Objects.equals(category, other.category)
-				&& Objects.equals(id, other.id)
+		return Objects.equals(brand, other.brand) 
+				&& Objects.equals(category, other.category)
+				&& Double.doubleToLongBits(cost) == Double.doubleToLongBits(other.cost) && Objects.equals(id, other.id)
 				&& Double.doubleToLongBits(inventory) == Double.doubleToLongBits(other.inventory)
 				&& Objects.equals(productName, other.productName)
 				&& Objects.equals(registrationDate, other.registrationDate)
 				&& Objects.equals(registrationResponsible, other.registrationResponsible)
-				&& Objects.equals(type, other.type) && Objects.equals(updateDate, other.updateDate)
-				&& Objects.equals(updateResponsible, other.updateResponsible)
-				&& Double.doubleToLongBits(cost) == Double.doubleToLongBits(other.cost);
+				&& Objects.equals(type, other.type) 
+				&& Objects.equals(updateDate, other.updateDate)
+				&& Objects.equals(updateResponsible, other.updateResponsible);
 	}
 
 	public static ProductsBuilder builder() {
