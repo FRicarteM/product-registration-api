@@ -1,5 +1,7 @@
 package br.com.fabtec.service;
 
-public class ProductsService {
+public class ProductService {
+	
+
 
 }

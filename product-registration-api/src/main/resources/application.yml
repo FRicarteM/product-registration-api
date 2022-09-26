@@ -1,1 +1,27 @@
+#Conexão Flyway
+spring:
+  flyway:
+    schemas: registration
+    user: postgres
+    password: 99132712
 
+#Conexão com o DB
+  datasource:
+    url: jdbc:postgresql://localhost:5432/product_registration
+    username: postgres
+    password: 99132712
+    
+#Mostrar dados SQL    
+  jpa:
+    properties:
+      hibernate:
+        show-sql: true
+        format-sql: true
+        
+#Logging
+logging:
+  level:
+    org:
+      springframework:
+        web: INFO
+        hibernate: INFO

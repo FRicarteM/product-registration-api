@@ -12,7 +12,7 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
-public class ProductsVo implements Serializable {
+public class ProductVo implements Serializable {
 
 	private static final long serialVersionUID = -897842491746305414L;
 
@@ -23,7 +23,7 @@ public class ProductsVo implements Serializable {
 	@NotBlank(message = "The field must be filled")
 	private String productName;
 	
-	@Size(min = 0, max = 15,
+	@Size(min = 0, max = 2,
 			message = "Number out of size limit")
 	@Positive(message = "Number not be negative or zero")
 	@NotBlank(message = "The field must be filled")
@@ -34,7 +34,7 @@ public class ProductsVo implements Serializable {
 	@NotBlank(message = "The field must be filled")
 	private String brand;
 	
-	@Size(min = 0, max = 17,
+	@Size(min = 0, max = 2,
 			message = "Number out of size limit")
 	@Positive(message = "Number not be negative or zero")
 	@NotBlank(message = "The field must be filled")
@@ -68,9 +68,9 @@ public class ProductsVo implements Serializable {
 	
 	private ZonedDateTime updateDate;
 	
-	public ProductsVo() {
+	public ProductVo() {
 	}
-	public ProductsVo(Long id, String productName, ProductCategory category, String brand, ProductType type, double cost,
+	public ProductVo(Long id, String productName, ProductCategory category, String brand, ProductType type, double cost,
 			double inventory, String registrationResponsible, String updateResponsible, ZonedDateTime registrationDate,
 			ZonedDateTime updateDate) {
 		this.id = id;
@@ -162,9 +162,9 @@ public class ProductsVo implements Serializable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if(!(obj instanceof ProductsVo))
+		if(!(obj instanceof ProductVo))
 			return false;
-		ProductsVo other = (ProductsVo) obj;
+		ProductVo other = (ProductVo) obj;
 		return Objects.equals(brand, other.brand) 
 				&& Objects.equals(category, other.category)
 				&& Objects.equals(id, other.id)
@@ -255,8 +255,8 @@ public class ProductsVo implements Serializable {
 			return this;
 		}
 		
-		public ProductsVo build() {
-			return new ProductsVo(id, 
+		public ProductVo build() {
+			return new ProductVo(id, 
 								productName, 
 								category, 
 								brand, 

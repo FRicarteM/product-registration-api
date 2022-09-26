@@ -1,44 +1,44 @@
 package br.com.fabtec.mapper;
 
-import br.com.fabtec.data.vo.ProductsVo;
-import br.com.fabtec.modal.Products;
+import br.com.fabtec.data.vo.ProductVo;
+import br.com.fabtec.modal.Product;
 
-public final class ProductsVoMapper {
+public final class ProductVoMapper {
 
-	public static Products convertVoToProducts(ProductsVo productsVo) {
+	public static Product convertVoToProducts(ProductVo productVo) {
 		
-		Products products = Products.builder()
-				.id(productsVo.getId())
-				.productName(productsVo.getProductName())
-				.category(productsVo.getCategory())
-				.brand(productsVo.getBrand())
-				.type(productsVo.getType())
-				.cost(productsVo.getCost())
-				.inventory(productsVo.getInventory())
-				.registrationResponsible(productsVo.getRegistrationResponsible())
-				.updateResponsible(productsVo.getUpdateResponsible())
-				.registrationDate(productsVo.getRegistrationDate())
-				.updateDate(productsVo.getUpdateDate())
+		Product product = Product.builder()
+				.id(productVo.getId())
+				.productName(productVo.getProductName())
+				.category(productVo.getCategory())
+				.brand(productVo.getBrand())
+				.type(productVo.getType())
+				.cost(productVo.getCost())
+				.inventory(productVo.getInventory())
+				.registrationResponsible(productVo.getRegistrationResponsible())
+				.updateResponsible(productVo.getUpdateResponsible())
+				.registrationDate(productVo.getRegistrationDate())
+				.updateDate(productVo.getUpdateDate())
 				.build();
-		return products;
+		return product;
 	}
 	
-	public static ProductsVo convertProductsToVo(Products products) {
+	public static ProductVo convertProductsToVo(Product product) {
 		
-		ProductsVo productsVo = ProductsVo.builder()
-				.id(products.getId())
-				.productName(products.getProductName())
-				.category(products.getCategory())
-				.brand(products.getBrand())
-				.type(products.getType())
-				.cost(products.getCost())
-				.inventory(products.getInventory())
-				.registrationResponsible(products.getRegistrationResponsible())
-				.updateResponsible(products.getUpdateResponsible())
-				.registrationDate(products.getRegistrationDate())
-				.updateDate(products.getUpdateDate())
+		ProductVo productVo = ProductVo.builder()
+				.id(product.getId())
+				.productName(product.getProductName())
+				.category(product.getCategory())
+				.brand(product.getBrand())
+				.type(product.getType())
+				.cost(product.getCost())
+				.inventory(product.getInventory())
+				.registrationResponsible(product.getRegistrationResponsible())
+				.updateResponsible(product.getUpdateResponsible())
+				.registrationDate(product.getRegistrationDate())
+				.updateDate(product.getUpdateDate())
 				.build();
-		return productsVo;
+		return productVo;
 	}
 	
 }

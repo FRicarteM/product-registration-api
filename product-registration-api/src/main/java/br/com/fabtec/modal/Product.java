@@ -17,7 +17,7 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Table(name = "products")
-public class Products implements Serializable {
+public class Product implements Serializable {
 
 	private static final long serialVersionUID = -8499493484763414150L;
 	
@@ -29,13 +29,13 @@ public class Products implements Serializable {
 	@Column(name = "product_name", nullable = false, length = 80)
 	private String productName;
 	
-	@Column(nullable = false, length = 15)
+	@Column(nullable = false, length = 2)
 	private Integer category;
 	
 	@Column(nullable = false, length = 20)
 	private String brand;
 	
-	@Column(nullable = false, length = 17)
+	@Column(nullable = false, length = 2)
 	private Integer type;
 	
 	@Column(nullable = false, length = 6)
@@ -61,10 +61,10 @@ public class Products implements Serializable {
 	@LastModifiedDate
 	private ZonedDateTime updateDate;
 
-	public Products() {
+	public Product() {
 	}
 
-	public Products(Long id, String productName, ProductCategory category, String brand, ProductType type, double cost,
+	public Product(Long id, String productName, ProductCategory category, String brand, ProductType type, double cost,
 			double inventory, String registrationResponsible, String updateResponsible, ZonedDateTime registrationDate,
 			ZonedDateTime updateDate) {
 		this.id = id;
@@ -156,9 +156,9 @@ public class Products implements Serializable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if(!(obj instanceof Products))
+		if(!(obj instanceof Product))
 			return false;
-		Products other = (Products) obj;
+		Product other = (Product) obj;
 		return Objects.equals(brand, other.brand) 
 				&& Objects.equals(category, other.category)
 				&& Double.doubleToLongBits(cost) == Double.doubleToLongBits(other.cost) && Objects.equals(id, other.id)
@@ -247,8 +247,8 @@ public class Products implements Serializable {
 			return this;
 		}
 		
-		public Products build() {
-			return new Products(id, 
+		public Product build() {
+			return new Product(id, 
 								productName, 
 								category, 
 								brand, 
