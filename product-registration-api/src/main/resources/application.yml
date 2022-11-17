@@ -1,20 +1,22 @@
-#Conexão Flyway
 spring:
+##Conexão Flyway
   flyway:
     schemas: registration
-    user: postgres
-    password: 99132712
+#    user: postgres
+#    password: 99132712
 
 #Conexão com o DB
   datasource:
     url: jdbc:postgresql://localhost:5432/product_registration
     username: postgres
     password: 99132712
+    driver-class-name: org.postgresql.Driver
     
 #Mostrar dados SQL    
   jpa:
     properties:
       hibernate:
+        ddl-auto: none
         show-sql: true
         format-sql: true
         

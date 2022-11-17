@@ -1,7 +1,7 @@
 package br.com.fabtec.modal;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -47,26 +47,28 @@ public class Product implements Serializable {
 	
 	//PEGAR DEPOIS DA TABELA USUARIO
 	@Column(name = "registration_responsible", nullable = false, length = 80)
+	//@CreatedBy
 	private String registrationResponsible;
 	
 	//PEGAR DEPOIS DA TABELA USUARIO
-	@Column(name = "update_responsible", nullable = false, length = 80)
+	@Column(name = "update_responsible", nullable = true, length = 80)
+	//@LastModifiedBy
 	private String updateResponsible;
 	
 	@Column(name = "registration_date", nullable = false, updatable = false)
 	@CreationTimestamp
-	private ZonedDateTime registrationDate;
+	private LocalDateTime registrationDate;
 	
-	@Column(name = "update_date", nullable = false)
+	@Column(name = "update_date", nullable = true)
 	@LastModifiedDate
-	private ZonedDateTime updateDate;
+	private LocalDateTime updateDate;
 
 	public Product() {
 	}
 
 	public Product(Long id, String productName, ProductCategory category, String brand, ProductType type, double cost,
-			double inventory, String registrationResponsible, String updateResponsible, ZonedDateTime registrationDate,
-			ZonedDateTime updateDate) {
+			double inventory, String registrationResponsible, String updateResponsible, LocalDateTime registrationDate,
+			LocalDateTime updateDate) {
 		this.id = id;
 		this.productName = productName;
 		setCategory(category);;
@@ -133,16 +135,16 @@ public class Product implements Serializable {
 	public void setUpdateResponsible(String updateResponsible) {
 		this.updateResponsible = updateResponsible;
 	}
-	public ZonedDateTime getRegistrationDate() {
+	public LocalDateTime getRegistrationDate() {
 		return registrationDate;
 	}
-	public void setRegistrationDate(ZonedDateTime registrationDate) {
+	public void setRegistrationDate(LocalDateTime registrationDate) {
 		this.registrationDate = registrationDate;
 	}
-	public ZonedDateTime getUpdateDate() {
+	public LocalDateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(ZonedDateTime updateDate) {
+	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 
@@ -186,8 +188,8 @@ public class Product implements Serializable {
 		private double inventory;
 		private String registrationResponsible;
 		private String updateResponsible;
-		private ZonedDateTime registrationDate;
-		private ZonedDateTime updateDate;
+		private LocalDateTime registrationDate;
+		private LocalDateTime updateDate;
 		
 		public ProductsBuilder() {
 		}
@@ -237,12 +239,12 @@ public class Product implements Serializable {
 			return this;
 		}
 		
-		public ProductsBuilder registrationDate(ZonedDateTime registrationDate) {
+		public ProductsBuilder registrationDate(LocalDateTime registrationDate) {
 			this.registrationDate = registrationDate;
 			return this;
 		}
 		
-		public ProductsBuilder updateDate(ZonedDateTime updateDate) {
+		public ProductsBuilder updateDate(LocalDateTime updateDate) {
 			this.updateDate = updateDate;
 			return this;
 		}

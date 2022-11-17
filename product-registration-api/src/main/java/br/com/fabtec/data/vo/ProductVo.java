@@ -1,7 +1,7 @@
 package br.com.fabtec.data.vo;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import br.com.fabtec.enums.ProductCategory;
@@ -64,15 +64,15 @@ public class ProductVo implements Serializable {
 	@NotBlank(message = "The field must be filled")
 	private String updateResponsible;
 	
-	private ZonedDateTime registrationDate;
+	private LocalDateTime registrationDate;
 	
-	private ZonedDateTime updateDate;
+	private LocalDateTime updateDate;
 	
 	public ProductVo() {
 	}
 	public ProductVo(Long id, String productName, ProductCategory category, String brand, ProductType type, double cost,
-			double inventory, String registrationResponsible, String updateResponsible, ZonedDateTime registrationDate,
-			ZonedDateTime updateDate) {
+			double inventory, String registrationResponsible, String updateResponsible, LocalDateTime registrationDate,
+			LocalDateTime updateDate) {
 		this.id = id;
 		this.productName = productName;
 		setCategory(category);;
@@ -137,16 +137,16 @@ public class ProductVo implements Serializable {
 	public void setUpdateResponsible(String updateResponsible) {
 		this.updateResponsible = updateResponsible;
 	}
-	public ZonedDateTime getRegistrationDate() {
+	public LocalDateTime getRegistrationDate() {
 		return registrationDate;
 	}
-	public void setRegistrationDate(ZonedDateTime registrationDate) {
+	public void setRegistrationDate(LocalDateTime registrationDate) {
 		this.registrationDate = registrationDate;
 	}
-	public ZonedDateTime getUpdateDate() {
+	public LocalDateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(ZonedDateTime updateDate) {
+	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 
@@ -194,8 +194,8 @@ public class ProductVo implements Serializable {
 		private double inventory;
 		private String registrationResponsible;
 		private String updateResponsible;
-		private ZonedDateTime registrationDate;
-		private ZonedDateTime updateDate;
+		private LocalDateTime registrationDate;
+		private LocalDateTime updateDate;
 		
 		public ProductsVoBuilder() {
 		}
@@ -245,12 +245,12 @@ public class ProductVo implements Serializable {
 			return this;
 		}
 		
-		public ProductsVoBuilder registrationDate(ZonedDateTime registrationDate) {
+		public ProductsVoBuilder registrationDate(LocalDateTime registrationDate) {
 			this.registrationDate = registrationDate;
 			return this;
 		}
 		
-		public ProductsVoBuilder updateDate(ZonedDateTime updateDate) {
+		public ProductsVoBuilder updateDate(LocalDateTime updateDate) {
 			this.updateDate = updateDate;
 			return this;
 		}
